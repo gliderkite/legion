@@ -55,6 +55,7 @@ pub enum FilterResult {
 impl FilterResult {
     /// Combines the result with a logical and operator.
     #[inline]
+    #[must_use]
     pub fn coalesce_and(self, other: Self) -> Self {
         match self {
             Self::Match(success) => {
@@ -69,6 +70,7 @@ impl FilterResult {
 
     /// Combines the result with a logical or operator.
     #[inline]
+    #[must_use]
     pub fn coalesce_or(self, other: Self) -> Self {
         match self {
             Self::Match(success) => {

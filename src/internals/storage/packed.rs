@@ -356,7 +356,7 @@ impl<T: Component> UnknownComponentStorage for PackedStorage<T> {
     }
 
     fn insert_archetype(&mut self, archetype: ArchetypeIndex, index: Option<usize>) {
-        let index = index.unwrap_or_else(|| self.slices.len());
+        let index = index.unwrap_or(self.slices.len());
         let arch_index = archetype.0 as usize;
 
         // create new vector for archetype

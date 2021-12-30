@@ -145,15 +145,15 @@ where
 
     fn reads(&self) -> (&[ResourceTypeId], &[ComponentTypeId]) {
         (
-            &self.access.resources.reads_only(),
-            &self.access.components.reads_only(),
+            self.access.resources.reads_only(),
+            self.access.components.reads_only(),
         )
     }
 
     fn writes(&self) -> (&[ResourceTypeId], &[ComponentTypeId]) {
         (
-            &self.access.resources.writes(),
-            &self.access.components.writes(),
+            self.access.resources.writes(),
+            self.access.components.writes(),
         )
     }
 
@@ -297,6 +297,7 @@ where
     R: 'static + ConsFlatten,
 {
     /// Provides a name to the system being built.
+    #[must_use]
     pub fn with_name(self, name: SystemId) -> Self {
         Self {
             name: Some(name),
@@ -384,6 +385,7 @@ where
     ///
     /// This type of access with `SubWorld` is provided for cases where sparse component access
     /// is required and searching entire query spaces for entities is inefficient.
+    #[must_use]
     pub fn read_component<T>(mut self) -> Self
     where
         T: Component,
@@ -404,6 +406,7 @@ where
     ///
     /// This type of access with `SubWorld` is provided for cases where sparse component access
     /// is required and searching entire query spaces for entities is inefficient.
+    #[must_use]
     pub fn write_component<T>(mut self) -> Self
     where
         T: Component,

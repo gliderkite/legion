@@ -43,7 +43,7 @@ fn query_read_entity_data() {
 
     let mut count = 0;
     for (entity, pos) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
         count += 1;
     }
 
@@ -105,7 +105,7 @@ fn query_cached_read_entity_data() {
 
     let mut count = 0;
     for (entity, pos) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
         count += 1;
     }
 
@@ -190,8 +190,8 @@ fn query_read_entity_data_tuple() {
 
     let mut count = 0;
     for (entity, pos, rot) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
-        assert_eq!(expected.get(&entity).unwrap().1, *rot);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().1, *rot);
         count += 1;
     }
 
@@ -219,7 +219,7 @@ fn query_write_entity_data() {
 
     let mut count = 0;
     for (entity, pos) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
         count += 1;
 
         pos.0 = 0.0;
@@ -249,8 +249,8 @@ fn query_write_entity_data_tuple() {
 
     let mut count = 0;
     for (entity, pos, rot) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
-        assert_eq!(expected.get(&entity).unwrap().1, *rot);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().1, *rot);
         count += 1;
 
         pos.0 = 0.0;
@@ -281,8 +281,8 @@ fn query_mixed_entity_data_tuple() {
 
     let mut count = 0;
     for (entity, pos, rot) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
-        assert_eq!(expected.get(&entity).unwrap().1, *rot);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().1, *rot);
         count += 1;
 
         rot.0 = 0.0;
@@ -312,8 +312,8 @@ fn query_partial_match() {
 
     let mut count = 0;
     for (entity, pos, rot) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
-        assert_eq!(expected.get(&entity).unwrap().1, *rot);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().1, *rot);
         count += 1;
 
         rot.0 = 0.0;
@@ -344,7 +344,7 @@ fn query_on_changed_first() {
 
     let mut count = 0;
     for (entity, pos, _) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
         count += 1;
     }
 
@@ -372,7 +372,7 @@ fn query_on_changed_no_changes() {
 
     let mut count = 0;
     for (entity, pos) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
         count += 1;
     }
 
@@ -380,7 +380,7 @@ fn query_on_changed_no_changes() {
 
     count = 0;
     for (entity, pos) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
         count += 1;
     }
 
@@ -408,7 +408,7 @@ fn query_on_changed_self_changes() {
 
     let mut count = 0;
     for (entity, pos) in query.iter_mut(&mut world) {
-        assert_eq!(expected.get(&entity).unwrap().0, *pos);
+        assert_eq!(expected.get(entity).unwrap().0, *pos);
         *pos = Pos(1., 1., 1.);
         count += 1;
     }

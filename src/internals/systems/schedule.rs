@@ -413,6 +413,7 @@ impl Executor {
 }
 
 /// A factory for `Schedule`.
+#[derive(Default)]
 pub struct Builder {
     steps: Vec<Step>,
     accumulator: Vec<Box<dyn ParallelRunnable>>,
@@ -481,15 +482,6 @@ impl Builder {
         let mut steps = Vec::new();
         std::mem::swap(&mut self.steps, &mut steps);
         Schedule { steps }
-    }
-}
-
-impl Default for Builder {
-    fn default() -> Self {
-        Self {
-            steps: Vec::new(),
-            accumulator: Vec::new(),
-        }
     }
 }
 

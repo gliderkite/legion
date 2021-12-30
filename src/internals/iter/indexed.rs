@@ -374,7 +374,7 @@ mod test {
         let collected: Vec<(&i32, &u32)> = iter.collect();
 
         assert_eq!(collected.len(), 5);
-        for (i, (ref x, ref y)) in collected.iter().enumerate() {
+        for (i, (x, y)) in collected.iter().enumerate() {
             assert_eq!(&values_a[i], *x);
             assert_eq!(&values_b[i], *y);
         }
@@ -390,7 +390,7 @@ mod test {
         let collected: Vec<(&i32, &u32)> = iter.collect();
 
         assert_eq!(collected.len(), 5);
-        for (i, (ref x, ref y)) in collected.iter().enumerate() {
+        for (i, (x, y)) in collected.iter().enumerate() {
             assert_eq!(&values_a[i], *x);
             assert_eq!(&values_b[i], *y);
         }

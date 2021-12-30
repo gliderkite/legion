@@ -180,7 +180,7 @@ impl<'a, T: Component> Deref for ComponentSlice<'a, T> {
     type Target = [T];
 
     fn deref(&self) -> &Self::Target {
-        &self.components
+        self.components
     }
 }
 
@@ -218,7 +218,7 @@ impl<'a, T: Component> Deref for ComponentSliceMut<'a, T> {
     type Target = [T];
 
     fn deref(&self) -> &Self::Target {
-        &self.components
+        self.components
     }
 }
 
@@ -295,12 +295,12 @@ impl Components {
     pub fn get_or_insert_with<F>(
         &mut self,
         type_id: ComponentTypeId,
-        mut create: F,
+        create: F,
     ) -> &mut dyn UnknownComponentStorage
     where
         F: FnMut() -> Box<dyn UnknownComponentStorage>,
     {
-        let cell = self.storages.entry(type_id).or_insert_with(|| create());
+        let cell = self.storages.entry(type_id).or_insert_with(create);
         cell.deref_mut()
     }
 

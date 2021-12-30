@@ -918,7 +918,7 @@ impl World {
         entity_serializer: &'a E,
     ) -> crate::internals::serialize::ser::SerializableWorld<'a, F, W, E> {
         crate::internals::serialize::ser::SerializableWorld::new(
-            &self,
+            self,
             filter,
             world_serializer,
             entity_serializer,
@@ -1314,9 +1314,7 @@ mod test {
         let mut world = World::default();
         let entities: Vec<_> = world
             .extend(vec![(1usize, true), (2usize, true), (3usize, false)])
-            .iter()
-            .copied()
-            .collect();
+            .to_vec();
 
         assert_eq!(world.len(), 3);
         assert!(world.remove(entities[0]));
@@ -1328,14 +1326,12 @@ mod test {
         let mut world = World::default();
         let entities: Vec<_> = world
             .extend(vec![(1usize, true), (2usize, true), (3usize, false)])
-            .iter()
-            .copied()
-            .collect();
+            .to_vec();
 
         assert_eq!(world.len(), 3);
         assert!(world.remove(entities[0]));
         assert_eq!(world.len(), 2);
-        assert_eq!(world.remove(entities[0]), false);
+        assert!(!world.remove(entities[0]));
         assert_eq!(world.len(), 2);
     }
 
@@ -1385,7 +1381,7 @@ mod test {
         let mut count = 0;
         for chunk in query.iter_chunks_mut(&mut world) {
             let (x, _) = chunk.into_components();
-            count += x.iter().count();
+            count += x.len();
         }
 
         assert_eq!(count, 30000);
